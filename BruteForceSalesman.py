@@ -1,5 +1,7 @@
 import csv
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 from random import randint
 points = []
 distances = [[]]
@@ -96,8 +98,34 @@ print(connections)
 # generate Eulerian tour of G
 
 EulerianTour = [connections[0][0]]
+lastcrossing = -1
+RemovedEdges = []
 while(len(connections) > 0):
-    #todo
-    pass
+    for connection in connections:
+        foundstep = False
+        if EulerianTour[-1] in connection:
+            foundstep = True
+            RemovedEdges.append(connection)
+            connection.remove(EulerianTour[-1])
+            EulerianTour.append(connection[0])
+            connections.remove(connection)
+            break
+    if not foundstep:
+        i = len(EulerianTour) -1
+        putbacklist = []
+        while i > 0:
+            free = False
+            for step in connections:
+                if EulerianTour[i] in step:
+                    free = True
+                    break
+            if(free):break
+            putbacklist.append([EulerianTour[i],EulerianTour[i-1]])
+            EulerianTour.pop(i)
+            i -= 1
+        connections += putbacklist
+            
+
+print(EulerianTour)
 
 # Generate TSP from Eulerian tour
