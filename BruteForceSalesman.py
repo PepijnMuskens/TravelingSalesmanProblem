@@ -1,5 +1,7 @@
 import csv
 import math
+import numpy as np
+import matplotlib.pyplot as plt
 from random import randint
 
 points = []
@@ -136,3 +138,12 @@ for node in EulerianTour:
 TSPtour.append(EulerianTour[-1])
 
 print(TSPtour)
+x = []
+y = []
+for node in TSPtour:
+    x.append(points[node][0])
+    y.append(points[node][1])
+xnp = np.array(x)
+ynp = np.array(y)
+plt.plot(xnp,ynp)
+plt.show()
