@@ -1,8 +1,7 @@
 import csv
 import math
-import matplotlib.pyplot as plt
-import numpy as np
 from random import randint
+
 points = []
 distances = [[]]
 with open('PointsGen.csv', newline='') as csvfile:
@@ -43,7 +42,7 @@ for i in range(len(points) -1):
 
     visited.append(points[connections[i][1]])
     unvisited.remove(points[connections[i][1]])
-print(connections)
+#print(connections)
     
 # Isolate Set of odd-degree Vertices S
 oddindexes = []
@@ -54,7 +53,7 @@ for i in range(len(points)):
             count +=1
     if count % 2 != 0:
         oddindexes.append(i)
-print(oddindexes)
+#print(oddindexes)
 
 # find min weight perfect matching M of S
 
@@ -89,11 +88,11 @@ class shortestdistancesolver:
     
 sds = shortestdistancesolver()
 sds.linkoddsreqursive(oddindexes, 0)
-print(sds.shortestpath)
+#print(sds.shortestpath)
 
 # Combine T and M into multigraph G
 connections += sds.shortestpath
-print(connections)
+#print(connections)
 
 # generate Eulerian tour of G
 
@@ -126,6 +125,14 @@ while(len(connections) > 0):
         connections += putbacklist
             
 
-print(EulerianTour)
+#print(EulerianTour)
 
 # Generate TSP from Eulerian tour
+
+TSPtour = []
+for node in EulerianTour:
+    if node not in TSPtour:
+        TSPtour.append(node)
+TSPtour.append(EulerianTour[-1])
+
+print(TSPtour)
