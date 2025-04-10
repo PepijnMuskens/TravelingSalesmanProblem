@@ -45,6 +45,7 @@ for i in range(len(points) -1):
     visited.append(points[connections[i][1]])
     unvisited.remove(points[connections[i][1]])
 #print(connections)
+
     
 # Isolate Set of odd-degree Vertices S
 oddindexes = []
@@ -90,10 +91,26 @@ class shortestdistancesolver:
     
 sds = shortestdistancesolver()
 sds.linkoddsreqursive(oddindexes, 0)
-#print(sds.shortestpath)
+print(sds.shortestpath)
 
 # Combine T and M into multigraph G
 connections += sds.shortestpath
+
+
+xnp = []
+ynp = []
+for node in connections:
+    x = []
+    y = []
+    x.append(points[node[0]][0])
+    y.append(points[node[0]][1])
+    x.append(points[node[1]][0])
+    y.append(points[node[1]][1])
+    xnp.append(np.array(x))
+    ynp.append(np.array(y))
+for p in range(len(xnp)):
+    plt.plot(xnp[p],ynp[p])
+plt.show()
 #print(connections)
 
 # generate Eulerian tour of G
