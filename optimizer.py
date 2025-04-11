@@ -26,18 +26,17 @@ class Optimizer:
 
     def k_optImprover(self, path, dist, k):
         connections = []
-        for i in range(len(path) - 2):
-            connections.append([path[i] + path[i+1]])
-        
         swapindexes = []
-        if(k < len(path) - 2): return
+        if(k > len(path) - 2): return
+        for i in range(len(path) - 1):
+            connections.append([path[i],path[i+1]])
         
         # get unique indexes
         i = 0
         while i < k:
-            swapindex = randint(1, len(path) -2)
+            swapindex = randint(1, len(connections) -1)
             if swapindex not in swapindexes:
                 swapindexes.append(swapindex)
-                i += 1                          
+                i += 1
                 
         return
