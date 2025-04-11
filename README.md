@@ -1,6 +1,7 @@
 <H1>1 Heuristics</H1>
 <H2>1 Cristofides algorithm</H2>
-This algorithm works in 6 steps: <br/>
+This algorithm works in 6 steps: <br/>  
+
 1. Create a minimal spaning tree for all the nodes. <br/>
 ![image](https://github.com/user-attachments/assets/be8dde0a-d11f-4b92-8afb-0042285ce510)
 2. Isolate nodes with a odd amount of connections
