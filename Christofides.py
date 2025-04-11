@@ -2,6 +2,7 @@ import csv
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+from optimizer import Optimizer 
 from random import randint
 
 points = []
@@ -95,7 +96,7 @@ print(sds.shortestpath)
 
 # Combine T and M into multigraph G
 
-
+connections += sds.shortestpath
 
 xnp = []
 ynp = []
@@ -112,7 +113,7 @@ for p in range(len(xnp)):
     plt.plot(xnp[p],ynp[p])
 plt.show()
 #print(connections)
-connections += sds.shortestpath
+
 # generate Eulerian tour of G
 
 EulerianTour = [connections[0][0]]
@@ -154,6 +155,10 @@ for node in EulerianTour:
         TSPtour.append(node)
 TSPtour.append(EulerianTour[-1])
 
+opt = Optimizer(distances)
+
+for i in range(100000):
+    TSPtour = opt.randomSwapper(TSPtour, opt.distanceChecker(TSPtour))
 print(TSPtour)
 x = []
 y = []
