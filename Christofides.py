@@ -94,7 +94,7 @@ sds.linkoddsreqursive(oddindexes, 0)
 print(sds.shortestpath)
 
 # Combine T and M into multigraph G
-connections += sds.shortestpath
+
 
 
 xnp = []
@@ -112,7 +112,7 @@ for p in range(len(xnp)):
     plt.plot(xnp[p],ynp[p])
 plt.show()
 #print(connections)
-
+connections += sds.shortestpath
 # generate Eulerian tour of G
 
 EulerianTour = [connections[0][0]]
