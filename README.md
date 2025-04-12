@@ -25,7 +25,15 @@ This method works by getting 2 random points in the path and changing the order 
  ![randomswap](https://github.com/user-attachments/assets/8a94ba6d-5094-4e5e-830d-8acde30c370a)
 
 This method does have a high probability of ending in a local peak where it cant improve anymore by only swapping 2 points but hasn't found the actual optimal solution.
-<H2>2 k-opt improvement</H2>
-//todo <br/>
+<H2>2 2-opt improvement</H2>
+In 2-opt improvement 2 edges are selected and have their end points swaped. To be sure this leads to a valid route the edges can't be attatched to each other. There are always 2 other ways to connect these edges but only one of them will still lead to a valid tour which connects all nodes. This new tour will then have its lenght compaired to the old tour and the shortest tour will be chosen to iterate futher on. <br/>
+
+![2-opt](https://github.com/user-attachments/assets/877d14d7-51ba-4dc4-89ef-b891fe7f9749)
+
+In my testing this resulted into a better rusult with more points as the random swap method but still has a chanche of falling into a local minimum. <br/>
+
+![image](https://github.com/user-attachments/assets/990867b6-e615-4e4c-ba89-ee60231facd0)
+
+
 <H2>2 simulated annealing</H2>
 //todo <br/>
