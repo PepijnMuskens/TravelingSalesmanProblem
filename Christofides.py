@@ -157,10 +157,10 @@ TSPtour.append(EulerianTour[-1])
 
 opt = Optimizer(distances)
 
-TSPtour = opt.k_optImprover(TSPtour, opt.distanceChecker(TSPtour),2)
 
-for i in range(100000):
-    TSPtour = opt.randomSwapper(TSPtour, opt.distanceChecker(TSPtour))
+print(TSPtour)
+for i in range(1000):
+    TSPtour = opt.two_optImprover(TSPtour, opt.distanceChecker(TSPtour))
 print(TSPtour)
 x = []
 y = []
