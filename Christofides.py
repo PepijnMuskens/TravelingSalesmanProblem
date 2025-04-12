@@ -157,11 +157,6 @@ TSPtour.append(EulerianTour[-1])
 
 opt = Optimizer(distances)
 
-
-print(TSPtour)
-for i in range(1000):
-    TSPtour = opt.two_optImprover(TSPtour, opt.distanceChecker(TSPtour))
-print(TSPtour)
 x = []
 y = []
 for node in TSPtour:
@@ -170,4 +165,26 @@ for node in TSPtour:
 xnp = np.array(x)
 ynp = np.array(y)
 plt.plot(xnp,ynp)
+plt.title('Distance: ' + str(opt.distanceChecker(TSPtour)))
+plt.show()
+
+newtour = opt.twoOpt(TSPtour, opt.distanceChecker(TSPtour))
+#while TSPtour != newtour:
+#    TSPtour = newtour
+#    newtour = opt.twoOpt(TSPtour, opt.distanceChecker(TSPtour))
+#TSPtour = newtour
+
+for i in range(10000):
+    TSPtour = opt.two_optRandom(TSPtour, opt.distanceChecker(TSPtour))
+    pass
+
+x = []
+y = []
+for node in TSPtour:
+    x.append(points[node][0])
+    y.append(points[node][1])
+xnp = np.array(x)
+ynp = np.array(y)
+plt.plot(xnp,ynp)
+plt.title('Distance: ' + str(opt.distanceChecker(TSPtour)))
 plt.show()

@@ -46,8 +46,6 @@ class Optimizer:
                 return False
         return True
 
-        
-
     def randomSwapper(self, path, dist):
         if(2 > len(path)): return
         path2 = copy.deepcopy(path)
@@ -61,7 +59,31 @@ class Optimizer:
             dist = self.distanceChecker(path2)
         return path
     
-    def two_optImprover(self, path, dist):
+    def twoOpt(self, path, dist):
+        connections = []
+        if(len(path) < 4): return
+        for i in range(len(path) - 1):
+            connections.append([path[i],path[i+1]])
+        cons = copy.deepcopy(connections)
+        for i in range(len(path)-1):
+            shorterpathfound = False
+            for j in range(i+2, len(path)-1):
+                connections = copy.deepcopy(cons)
+                path2 = self.two_optImprover(connections, path, i, j, dist)
+                if path != path2:
+                    shorterpathfound = True
+                    break
+            if shorterpathfound: break
+            for j in range (0, i-1):
+                connections = copy.deepcopy(cons)
+                path2 = self.two_optImprover(connections, path, i, j, dist)
+                if path != path2:
+                    shorterpathfound = True
+                    break
+            if shorterpathfound: break
+        return path2
+    
+    def two_optRandom(self, path, dist):
         connections = []
         if(len(path) < 4): return
         for i in range(len(path) - 1):
@@ -81,7 +103,9 @@ class Optimizer:
             else:
                 exclindexes.append(index1 - 1)
         index2 =  choice([i for i in range(0,len(path)-2) if i not in exclindexes])
-        
+        return self.two_optImprover(connections, path, index1, index2, dist)
+
+    def two_optImprover(self, connections, path, index1, index2, dist):
         # try first swap option
         swap = connections[index1][0]
         connections[index1][0] = connections[index2][0]
@@ -96,22 +120,5 @@ class Optimizer:
         newdist =  self.distanceChecker(path2)
         if newdist < dist:
             dist = newdist
-            path = path2
+            return path2
         return path
-
-    def k_optImprover(self, path, dist, k):
-        connections = []
-        swapindexes = []
-        if(k > len(path) - 2): return
-        for i in range(len(path) - 1):
-            connections.append([path[i],path[i+1]])
-        
-        # get unique indexes
-        i = 0
-        while i < k:
-            swapindex = randint(1, len(connections) -1)
-            if swapindex not in swapindexes:
-                swapindexes.append(swapindex)
-                i += 1
-                
-        return
