@@ -39,5 +39,8 @@ In my testing this resulted into a better rusult with more points as the random 
 ![image](https://github.com/user-attachments/assets/990867b6-e615-4e4c-ba89-ee60231facd0)
 
 
-<H2>2 simulated annealing</H2>
-//todo <br/>
+<H1>3 Conclusion</H1>
+Between the methods I implemented the Christofides algorithm had the best results over the simple greedy method. My implementation did have some problems where it would get stuck on trying to solve more as 35 points, so in this aspect the greedy approach definitly did better.
+<br/>
+<br/>
+For the optimization of the route I couldn't find a consistent winner as the base used so i mostly greedy since it rus faster and handeled more points. When using only a few points the random swap method was more than enough to find a good route but when testing with a larger set of points the random swaps were less effective since the base of the route was already decently optimized. The 2-opt method did preform better in the larger senarios since it used a smarter way of creating a new path instead of just changing 2 random points order.
