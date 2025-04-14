@@ -47,12 +47,11 @@ opt = Optimizer(distances)
 #while TSPtour != newtour:
 #    TSPtour = newtour
 #    newtour = opt.twoOpt(TSPtour, opt.distanceChecker(TSPtour))
-
-#for i in range(1000):
-#    if TSPtour != newtour:
-#        TSPtour = newtour
-#        newtour = opt.twoOpt(TSPtour, opt.distanceChecker(TSPtour))
-    #TSPtour = opt.two_optRandom(TSPtour, opt.distanceChecker(TSPtour))
+for i in range(2000):
+    TSPtour = opt.two_optRandom(TSPtour, opt.distanceChecker(TSPtour))
+for i in range(20):
+    TSPtour = opt.twoOpt(TSPtour, opt.distanceChecker(TSPtour))
+    
 #    pass
 
 x = []
